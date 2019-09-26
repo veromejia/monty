@@ -58,7 +58,7 @@ void pop(stack_t **stack, unsigned int line_number)
 		free(new_node);
 }
 /**
- * swap - prints the value at the top of the stack
+ * swap - swap the top two elements of the dlinked list
  * @stack: pointer to doble linked list
  * @line_number:given line number
  */
@@ -68,9 +68,9 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 	int len = dlistint_len(temp);
 
-	if (stack == NULL || len < 2)
+	if (stack == NULL || *stack == NULL || len < 2)
 	{
-		dprintf(STDERR_FILENO, "L%i: can't swap,stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%u: can't swap, stack too short\n", line_number);
 		free(temp);
 		exit(EXIT_FAILURE);
 	}
