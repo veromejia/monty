@@ -47,16 +47,20 @@ int split_line(char *line, unsigned int line_count);
 int build_monty(char *path);
 int find_func(char *opcode, char *value, int ln);
 int call_fun(op_func f, char *op, char *val, int ln);
+
 stack_t *create_node(int value);
 void free_list(void);
-
-void push(stack_t **stack, unsigned int line_number);
-void pall(stack_t **stack, unsigned int line_number);
 size_t print_dlistint(const stack_t *h);
 size_t dlistint_len(const stack_t *h);
 void *add_dnodeint(stack_t **head, __attribute__((unused))const int n);
+
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+
+void add(stack_t **stack, unsigned int line_number);
+
 #endif
