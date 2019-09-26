@@ -58,5 +58,7 @@ void *add_dnodeint(stack_t **head, __attribute__((unused))const int n);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
+void nop(__attribute__((unused)) stack_t **stack,
+	 __attribute__((unused)) unsigned int line_number);
 
 #endif
