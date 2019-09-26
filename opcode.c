@@ -33,7 +33,7 @@ void pint(stack_t **stack, unsigned int line_number)
 		dprintf(STDERR_FILENO, "L%i: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	dprintf(STDERR_FILENO, "%d\n", (*stack)->n);
+	printf("%d\n", (*stack)->n);
 }
 
 /**
