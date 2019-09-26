@@ -53,7 +53,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 
 		*stack = new_node->next;
-		if (new_node->next != NULL)
+		if (*stack != NULL)
 			(*stack)->prev = NULL;
 		free(new_node);
 }
@@ -66,17 +66,20 @@ void pop(stack_t **stack, unsigned int line_number)
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
-	stack_t *next = temp->next;
 	int len = dlistint_len(temp);
 
-	if (len < 2)
+	if (stack == NULL || len < 2)
 	{
 		dprintf(STDERR_FILENO, "L%i: can't swap,stack too short\n", line_number);
+		free(temp);
 		exit(EXIT_FAILURE);
 	}
-	temp->prev = next;
-	temp->next = next->next;
-	next->prev = NULL;
-	*stack = next;
-	(*stack)->next = temp;
+	temp = (*stack)->next;
+	(*stack)->next = temp->next;
+	if (temp->next != NULL)
+		temp->next->prev = *stack;
+	temp->next = *stack;
+	(*stack)->prev = temp;
+	temp->prev = NULL;
+	*stack = temp;
 }
