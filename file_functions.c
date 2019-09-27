@@ -1,7 +1,7 @@
 #include "monty.h"
 /**
- * find_func - find the correct function to be execute
- * @opcode: option
+ * find_func - finds the correct function to be execute
+ * @opcode: command to be find
  * @value: value
  * @ln: line number
  * Return: 0 on success and -1 on fail
@@ -48,36 +48,35 @@ int find_func(char *opcode, char *value, int ln)
 }
 
 /**
-* call_fun - Calls the required function.
-* @f: Pointer to the function that is about to be called.
-* @op: string representing the opcode.
-* @val: string representing a numeric value.
-* @ln: line numeber for the instruction.
-* Return: 0 on success and -1 on fail
+ * call_fun - Calls the required function.
+ * @f: Pointer to the function called.
+ * @op: opcode called.
+ * @val: value of push command
+ * @ln: line number
+ * Return: 0 on success and -1 on fail
 */
 int call_fun(op_func f, char *op, char *val, int ln)
 {
 	stack_t *node;
-	int flag;
-
-	flag = 1;
+	int sign = 1;
 
 	if (strcmp(op, "push") == 0)
 	{
 		if (val != NULL && val[0] == '-')
 		{
 			val = val + 1;
-			flag = -1;
+			sign = -1;
 		}
 		if (val == NULL || check_int(val) == -1)
 		{
 			dprintf(STDERR_FILENO, "L%i: usage: push integer\n", ln);
 			return (-1);
 		}
-		node = create_node(atoi(val) * flag);
+		node = create_node(atoi(val) * sign);
 		f(&node, ln);
 	}
 	else
+		/*head global variable*/
 		f(&head, ln);
 
 	return (0);
