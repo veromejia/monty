@@ -22,6 +22,7 @@ int find_func(char *opcode, char *value, int ln)
 		{"sub", sub},
 		{"mul", mul},
 		{"div", _div},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
