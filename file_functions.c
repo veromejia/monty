@@ -19,6 +19,9 @@ int find_func(char *opcode, char *value, int ln)
 		{"swap", swap},
 		{"nop", nop},
 		{"add", add},
+		{"sub", sub},
+		{"mul", mul},
+		{"div", _div},
 		{NULL, NULL}
 	};
 
